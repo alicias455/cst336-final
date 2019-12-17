@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+</head>
+<body>
+<table>
+    <form action="/nDate" method="post">
+        <tr>
+            <td>ID</td>
+            <td><%= unique_id %></td>
+            <input type="number" name="id" value="<%= unique_id %>" style="display:none;">
+
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" name="FirstName"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="LastName"></td>
+        </tr>
+        <tr>
+            <td>DOB (enter as YYYY-MO-DAY)</td>
+            <td><input type="date" name="dob" value="2000-01-01"></td>
+        </tr>
+        <tr>
+            <td>DOD (enter as YYYY-MO-DAY)</td>
+            <td><input type="date" name="dod" value="2000-01-01"></td>
+
+        </tr>
+        <!--        <tr>-->
+        <!--            <td>Gender</td>-->
+        <!--            <td><select name="gender">-->
+        <!--                <option value="">Select One</option>-->
+        <!--                <option value="f">Female</option>-->
+        <!--                <option value="m">Male</option>-->
+        <!--                <option value="na">Non-Other</option>-->
+        <!--            </select></td>-->
+        <!--        </tr>-->
+    </form>
+    </tr><td><button onclick="window.location.href='/guest'">Cancel</button> <button onclick="window.location.href='/'">Save</button></td>
+
+
+</table>
+<script>
+
+</script>

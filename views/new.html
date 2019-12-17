@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</head>
+
+<a id="backButton" class="button fadeIn fourth" href="/" style="color:black;">Back</a><br>
+
+<div class="header1">
+    <h1>Create New Account</h1>
+</div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Login Form -->
+        <form><br>
+            <!-- EMAIL SECTION -->
+            <label for="email">Email</label><br>
+            <input type="text" id="email" class="fadeIn third" name="email" required><br>
+
+            <!-- FULL NAME SECTION -->
+            <label for="fullName">Full Name</label><br>
+            <input type="text" id="fullName" class="fadeIn third" name="fullName" required><br>
+
+            <!-- USERNAME SECTION -->
+            <label for="newUsername">Username</label><br>
+            <input type="text" id="newUsername" class="fadeIn fourth" name="newUsername" required>
+
+            <!-- PASSWORD SECTION -->
+            <label for="newPassword">Password</label><br>
+            <input type="password" id="newPassword" class="fadeIn fifth" name="newPassword" required>
+            <div id="passwordMessage" style="display:none; color:green">
+                Must contain at least one number, one uppercase letter,<br> one lowercase letter, and must be at least 8 character long<br><br>
+            </div><br><br>
+
+            <!-- SUBMIT BUTTON -->
+            <input type="submit" id="createAccountButton" class="button fadeIn sixth" value="Create Account"><br><br>
+            <span id="errorMessage"></span>
+        </form><br>
+    </div><br>
+</div>
+
+<script>
+    var password = document.getElementById("newPassword");
+
+    // When the user clicks on the password field, show the message box
+    password.onfocus = function() {
+        document.getElementById("passwordMessage").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    password.onblur = function() {
+        document.getElementById("passwordMessage").style.display = "none";
+    }
+
+    $("#createAccountButton").on("click", function(e) {
+        e.preventDefault(); // Do not submit until I am ready
+
+        let email = $("#email").val();
+        let fullName = $("#fullName").val();
+        let username = $("#newUsername").val();
+        let password = $("#newPassword").val();
+
+        // IF THE VALUES ARE BLANK DON'T SUBMIT
+        if(email == "" || fullName == "" || username == "" || !checkPassword(password)) {
+            if(email == "") {
+                $("#errorMessage").html("Email is required").css("color", "red");
+            }
+            if (fullName == "") {
+                $("#errorMessage").html("Name is required").css("color", "red");
+            }
+            if (username == "") {
+                $("#errorMessage").html("Username is required").css("color", "red");
+            }
+            if (!checkPassword(password)) {
+                $("#passwordMessage").css("display", "block");
+                $("#passwordMessage").css("color", "red");
+            }
+        } else {
+            // AJAX CALL TO CREATE A NEW USER
+            // IF TRUE SHOULD GO TO /USER
+            // IF FALSE SHOULD REDIRECT HERE
+            $.ajax({
+                type: "POST",
+                url: "/new",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "email": email,
+                    "fullName": fullName,
+                    "username": username,
+                    "password": password
+                }),
+                success: function(result, status) {
+                    if (result.successful) {
+                        window.location.href = '/user'; // This will navigate to wherever i say...
+                    }
+                    else {
+                        // Show an error message or something and stay here
+                        $('#errorMessage').html(result.message).css("color", "red");
+                        $('#errorMessage').show();
+                    }
+                },
+                error: function(xhr, status, message) {
+                    console.log("error: ", xhr.responseText);
+                }
+            });
+        }
+    });
+
+    // FUNCTION TO CHECK IF PASSWORD MEETS REQUIREMENTS
+    function checkPassword(str) {
+        if (str.length < 8) {
+            // shorter than 8 characters
+            return false;
+        } else if (str.search(/\d/) == -1) {
+            // no number
+            return false;
+        } else if (str.search(/[a-z]/) == -1) {
+            // no lowercase letters
+            return false;
+        } else if (str.search(/[A-Z]/) == -1) {
+            // no uppercase letters
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
+<hr><br>
+<footer>
+    CST336: Internet Programming<br>
+    &copy; 2019. Scheduler<br>
+    Disclaimer: The information in this page might be inaccurate.<br>
+    It is used for academic purposes only.<br><br>
+</footer>
+</body>
+</html>

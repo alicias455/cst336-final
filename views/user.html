@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</head>
+
+<body>
+{{!-- BUTTONS ON TOP --}}
+<a class="button fadeIn fourth" href="/umap" style="color:black;">Continue</a>
+<a class="button fadeIn fourth" href="/edit" style="color:black;">Edit Password</a>
+<a class="button fadeIn fourth" href="/" style="color:black;">Log Out</a>
+
+{{!-- DISPLAYS CURRENT CLASSES --}}
+<div class="wrapper fadeInDown">
+    <div class="header1">
+        <h3>Current Schedule</h3>
+    </div>
+    <table id="formContent1">
+        {{#each class}}
+        <tr>
+            <td>{{this.buildingname}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.time}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+{{!-- OPTION TO DELETE CLASSES --}}
+<label for="deleteClass" style="color:white;"class="fadeIn second">Enter course name of class to delete: </label>
+<input type="text" id="deleteClass" class="fadeIn second" style="width:6%;height:10px;" name="deleteClass">
+<button id="deleteButton" class="button fadeIn fourth">Delete Class</button><br><br>
+<span id="deleteButtonError"></span>
+
+{{!-- ADD A CLASS --}}
+<div class="header1">
+    <h3>Add Class</h3>
+</div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <form><br>
+            {{!-- DISPLAYS BUILDING LOCATIONS --}}
+            <label for="location">Location of Class:</label><br>
+            <select id="location" class="fadeIn fourth">
+                <option value="">Select One</option>
+                {{#each buildings}}
+                <option value={{this.number}}>{{this.buildingname}}</option>
+                {{/each}}
+            </select><br>
+
+            {{!-- CLASS NAME --}}
+            <br><label for="className">Class Title</label><br>
+            <input type="text" id="className" class="fadeIn fourth" name="className" required>
+
+            {{!-- CLASS TIME --}}
+            <br><label for="time">Time</label><br>
+            <input type="text" class="timepicker" name="time" id="time"/>
+            <input type="submit" id="addClass" class="button fadeIn sixth" value="Add Class">
+            <span id="errorMessage"></span>
+        </form>
+    </div>
+</div><br>
+<hr>
+<footer>
+    CST336: Internet Programming<br> &copy; 2019. Parking Waze<br>
+    Disclaimer: The information in this page might be inaccurate.<br>
+    It is used for academic purposes only.<br><br>
+</footer>
+<script>
+    $(document).ready(function() {
+        $('input.timepicker').timepicker({});
+    });
+
+    $('.timepicker').timepicker({
+        timeFormat: 'HH:mm p',
+        interval: 60,
+        minTime: '0',
+        maxTime: '10:00pm',
+        defaultTime: '11',
+        startTime: '0:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+    });
+
+    $("#addClass").on("click", function(e) {
+        e.preventDefault(); // Do not submit until I am ready
+
+        let location = $("#location").val();
+        let name = $("#className").val();
+        let time = $("#time").val();
+
+        // CHECK IF ALL VALUES ARE FILLED
+        if(location == "" || name == "" || time == "") {
+            $("#errorMessage").html("<br>Missing selection above").css("color", "red");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/user",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "location": location,
+                    "name": name,
+                    "time": time
+                }),
+                success: function(result, status) {
+                    if (result.successful) {
+                        // RELOAD THE PAGE
+                        window.location.href = '/user'; // This will navigate to wherever i say...
+                    }
+                    else {
+                        // Show an error message or something and stay here
+                        $('#errorMessage').html(result.message).css("color", "red");
+                        $('#errorMessage').show();
+                    }
+                },
+                error: function(xhr, status, message) {
+                    console.log("error: ", xhr.responseText);
+                }
+            });
+        }
+    });
+
+    $("#deleteButton").on("click", function() {
+        let classToDelete = $("#deleteClass").val();
+
+        if(classToDelete == "") {
+            $("#deleteButtonError").html("Error, nothing typed...<br><br>").css("color", "red");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/user",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    deleteClass: classToDelete
+                }),
+                success: function(result, status) {
+                    if (result.successful) {
+                        // RELOAD THE PAGE
+                        $("#deleteButtonError").html("");
+                        window.location.href = '/user'; // This will navigate to wherever i say...
+                    }
+                    else {
+                        // Show an error message or something and stay here
+                        $('#deleteButtonError').html(result.message).css("color", "red");
+                        $('#deleteButtonError').show();
+                    }
+                },
+                error: function(xhr, status, message) {
+                    console.log("error: ", xhr.responseText);
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

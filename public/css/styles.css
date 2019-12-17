@@ -1,0 +1,399 @@
+body {
+    text-align: center;
+    width: 100%;
+    font-family: 'proxima-nova', sans-serif;
+}
+
+.header {
+    font-size: 40px;
+    padding: 40px;
+    padding-bottom: 5px;
+    color: #5fbae9;
+    margin-top: 0px;
+}
+
+.header1 {
+    font-size: 40px;
+    color: white;
+    margin-top: 0px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+a {
+    color: #92badd;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.buildings {
+
+    height: 150px;
+    font-size: 13px;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    height: 100px;
+    font-size: 13px;
+}
+
+.buildings {
+    height: 150px;
+    font-size: 13px;
+    border-radius: 6px;
+    width: 50%;
+    margin: auto;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.buildings .select {
+    width: 100%;
+    background-position: 50% center;
+}
+
+.buildings .select select {
+    background: white;
+    height: 50px;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 50%;
+    position: relative;
+    z-index: 10;
+    font-size: 1em;
+}
+
+.length {
+    height: 150px;
+    font-size: 13px;
+    border-radius: 6px;
+    width: 50%;
+    margin: auto;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 8px;
+    padding: 10px;
+}
+.length .select {
+    width: 100%;
+    background-position: 50% center;
+}
+
+.length .select select {
+    background: white;
+    line-height: 1;
+    height: 50px;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 50%;
+    position: relative;
+    z-index: 10;
+    font-size: 1em;
+}
+
+.button1 {
+    background-color: white;
+    border: groove;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.5s;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button1 span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button1 span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button1:hover span {
+    padding-right: 25px;
+}
+
+.button1:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+}
+
+#formContent {
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    padding: 0px;
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+}
+
+#formFooter {
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* FORM TYPOGRAPHY*/
+
+input {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 75%;
+    border: 2px solid #f6f6f6;
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px 5px 5px 5px;
+}
+
+input[type=text]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #5fbae9;
+}
+
+input[type=text]::placeholder {
+    color: #cccccc;
+}
+
+input[type=password]::placeholder {
+    color: #cccccc;
+}
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+
+.fadeInDown {
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Simple CSS3 Fade-in Animation */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+.fadeIn.first {
+    animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+    animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+    animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+    animation-delay: 1s;
+}
+
+.fadeIn.fifth {
+    animation-delay: 1.2s;
+}
+
+.fadeIn.sixth {
+    animation-delay: 1.4s;
+}
+
+/* Simple CSS3 Fade-in Animation */
+
+.underlineHover:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #56baed;
+    content: "";
+    transition: width 0.2s;
+}
+
+.underlineHover:hover {
+    color: #0d0d0d;
+    cursor: pointer;
+}
+
+.underlineHover:hover:after {
+    width: 100%;
+}
+
+/* END OF FORM SECTION */
+
+/* The message box is shown when the user clicks on the password/id field */
+
+#message {
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
+/* OTHERS */
+
+*:focus {
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.timepicker {
+    width: 50%;
+}
+
+#arrival {
+    height: 120px;
+    width: 50%;
+    margin: auto;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.button {
+    padding: 8px 20px;
+    margin: 5px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    background-color: #f6f6f6;
+    border: 2px solid #008CBA;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+footer {
+    font-size: 14px;
+}
+
+#cancelButton{
+    width: 100px;
+}
+
+#className{
+    width: 150px;
+}
+
+#location{
+    background: whitesmoke;
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 4px;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+#buildingChoice{
+    background: whitesmoke;
+    width: 300px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 4px;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+#backButton{
+    float: left;
+}
