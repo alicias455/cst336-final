@@ -82,6 +82,57 @@ app.get('/guest', function(req, res, next) {
     connection.end();
 });
 
+app.get("/nDate", function(req, res){
+
+    const connection = mysql.createConnection({
+        host: 'jlg7sfncbhyvga14.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'qgqifg7oz9sxl8ey',
+        password: 's46bb5bu1c8y26hk',
+        database: 'yrracjeliqow5h4f'
+    });
+
+    connection.connect();
+
+    connection.query(`SELECT date FROM schedule`,
+        function(error, results) {
+            if (error) throw error;
+
+            console.log(results);
+            res.render('nDate.ejs', {
+                title: 'Scheduler',
+                date: results
+            });
+        });
+});
+
+app.post("/nDate", function(req, res){
+
+    const connection = mysql.createConnection({
+        host: 'jlg7sfncbhyvga14.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'qgqifg7oz9sxl8ey',
+        password: 's46bb5bu1c8y26hk',
+        database: 'yrracjeliqow5h4f'
+    });
+
+    connection.connect();
+
+    connection.query(
+        `INSERT INTO schedule (username, date, start_time, duration, by)
+        VALUES ('', '${req.body.date}', '${req.body.start_time}', '${req.body.duration}', '')`,
+        function(error, results) {
+            if (error) throw error;
+
+            console.log(req.body.date);
+            console.log(req.body.start_time);
+            console.log(req.body.duration);
+            res.render('nDate.ejs', {
+                date: date,
+                date: results
+            });
+        });
+});
+
+
 app.get('/user', function(req, res) {
     const connection = mysql.createConnection({
         host: 'jlg7sfncbhyvga14.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',

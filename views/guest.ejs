@@ -36,17 +36,13 @@
                 <td><%= schedule.duration %></td>
                 <td><%= schedule.by %></td>
                 <td>
-                    <button id="edit" class="button fadeIn fourth" onclick="window.location.href='/edit'" data-toggle="modal" data-target="#editModal">Edit</button>
+                    <button id="edit" class="button fadeIn fourth" onclick="window.location.href='/edit'" data-toggle="modal" data-target="#editModal">Details</button>
                     <button class="button fadeIn fourth" data-authorId="{{authorId}}" data-toggle="modal" data-target="#deleteModal">Delete</button>
                 </td>
             </tr>
         <% }); %>
     </table>
 </div>
-
-<button class="button fadeIn fourth" id="displayMap">Continue</button><br><br>
-<span id="helloMessage"></span>
-<span id="buttonWasClicked"></span>
 
 
 <script>

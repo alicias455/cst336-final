@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e71b7302-6de9-4093-a0f1-82ed13136766" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/guest.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/new.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/nDate.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/guest.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/guest.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/nDate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1576524851063</updated>
       <workItem from="1576524853649" duration="5186000" />
-      <workItem from="1576544715167" duration="10351000" />
+      <workItem from="1576544715167" duration="13986000" />
     </task>
     <servers />
   </component>
